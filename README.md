@@ -29,6 +29,7 @@ Ensure you have Docker installed on your machine. If not, you can download and i
     DB_USER=postgres
     DB_PASSWORD=1234
     ```
+Note: Replace `geospace`, `postgres`, and `1234` with your preferred names and passwords. These are examples and should not be used in a production environment.
 
 4. **Build and Run the Docker Containers:**
 
