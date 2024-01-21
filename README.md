@@ -44,8 +44,25 @@ Ensure you have Docker installed on your machine. If not, you can download and i
 
 - `start.sh`: This script ensures the PostgreSQL database is ready before starting the Django application. It incorporates the `wait-for-it.sh` script to handle the synchronization.
 
+## Running Tests
+
+To run tests for the GeoApp, execute the following command:
+
+```bash
+docker-compose exec web python manage.py test
+```
+
+This command will run the Django test suite, including any tests you've added for your models or other components.
+
+## Assumptions and Decisions:**
+- **Database Connection:** The application assumes a PostgreSQL database with PostGIS support. Adjustments may be needed for different database systems.
+
+- **Security:** The use of environment variables for sensitive information, such as database credentials, was chosen to enhance security.
+
+- **Bonus Feature:** The GeoApp includes a simple Django model that utilizes PostGIS features, and a corresponding test to validate its functionality as a bonus feature.
+
 ## Additional Details
 
 - **Libraries Installed:**
-    - `libgdal`: This library is required for GeoDjango to support geographic data.
-    - `libpq`: It is the PostgreSQL client library, necessary for interfacing with the PostgreSQL database.
+    - `libgdal-dev`: This library is required for GeoDjango to support geographic data.
+    - `libpq-dev`: It is the PostgreSQL client library, necessary for interfacing with the PostgreSQL database.
