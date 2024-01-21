@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    container_name: geoapp
+    ports:
+      - "8000:8000"
+    command: ["sh", "./start.sh"]
+    env_file:
+      - .env  # Load the env variables from .env file
+    depends_on:
+      - postgres_db
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings  # Set the django project settings path
+    volumes:
+      - .:/app  # Mount actual diretory in container
+
+  postgres_db:
+    image: postgis/postgis:15-3.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+volumes:
+  postgres_data:
